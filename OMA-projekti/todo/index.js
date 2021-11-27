@@ -31,17 +31,18 @@ var upload = multer({ storage: storage })
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname + '/public'));
 
-// load single image
+
 app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
     // req.file is the `profile-file` file
     // req.body will hold the text fields, if there were any
+    
     var response = '<a href="/">Home</a><br>'
     response += "Files uploaded successfully.<br>"
     response += `<img src="${req.file.path}" /><br>`
     return res.send(response)
 })
 
-// Load multiple images
+
 app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
     // req.files is array of `profile-files` files
     // req.body will contain the text fields, if there were any
@@ -105,7 +106,9 @@ app.post('/todos', async (request, response) => {
 
 //Edit route
 app.put("/todos", async (request, response) => {
-    const { text, _id, tietoa, hinta, image } = request.body
+
+    try{
+        const { text, _id, tietoa, hinta, image } = request.body
 
     const item = await Todo.findById(_id)
     item.text = text
@@ -115,10 +118,15 @@ app.put("/todos", async (request, response) => {
 
     const saveditem = await item.save()
     response.json(saveditem)
+
+    }catch (err){
+        console.log(err)
+    }
+    
 })
 
 // test 
-let filter = { text: "Pse" }
+let filter = { text: "pse" }
 app.get('/pse', async (request, response) => {
     const pse = await Todo.find(filter)
     response.json(pse)

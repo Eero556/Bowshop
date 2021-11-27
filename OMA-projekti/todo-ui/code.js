@@ -4,32 +4,38 @@
 
 
 
+
+
 //Starts the program ui ---> loadTodo
 function init() {
     let infoText = document.getElementById('infoText')
     infoText.innerHTML = 'Loading objects, wait...'
-    loadTodos()
-    load_pse()
+    load_items()
 }
 
 // load only wanted info
-async function load_pse(){
-    let response = await fetch('http://localhost:3000/pse')
-    let pse = await response.json()
-    console.log(pse)
-}
+
 
 // Loads all todos from localhost
-async function loadTodos() {
+async function load_items() {
+    
+    let container = document.getElementById("container")
     let response = await fetch('http://localhost:3000/todos')
     let todos = await response.json()
     console.log(todos)
+    let vastaus = await fetch('http://localhost:3000/pse')
+    let pse = await vastaus.json()
+    console.log(pse)
+
     //After Todos has been loaded then showTodos funktion
-    showTodos(todos)
+    show_items(todos)
 }
 
 
-function createTodoListItem(todo) {
+
+function create_item(todo) {
+
+
     // Creating new div element that hold unique mongo _id
     let div = document.createElement('div')
     div.className = "item"
@@ -54,7 +60,7 @@ function createTodoListItem(todo) {
     let hinta = document.createElement("p")
     hinta.className = "hinta"
     hinta.innerHTML = todo.hinta + "euroa"
-
+    console.log(todo.hinta)
     //Image
     let image = document.createElement("img")
     image.className = "images"
@@ -62,11 +68,12 @@ function createTodoListItem(todo) {
     image.src = `http://localhost:3000/uploads/${apu}`
     
 
-    // Append <p> elements to div
+    // Append <p> elements and image to div
+    div.appendChild(image)
     div.appendChild(text)
     div.appendChild(tietoa)
     div.appendChild(hinta)
-    div.appendChild(image)
+    
 
 
     // Create span element that has onclick event "remove property"
@@ -92,16 +99,22 @@ function createTodoListItem(todo) {
 }
 
 // Making new object that have been loaded using LoadTodo funktion
-function showTodos(todos) {
+function show_items(todos) {
     let todosList = document.getElementById('todosList')
     let infoText = document.getElementById('infoText')
+    let container = document.getElementById("container")
+  
+
     // If no objects then modify infotextbox
     if (todos.length === 0) {
         infoText.innerHTML = 'No objects'
+        
     } else {
         // If there is objects then foreach make div object to Ul list called todolist
+        
         todos.forEach(todo => {
-            let div_object = createTodoListItem(todo)
+
+            let div_object = create_item(todo)
             todosList.appendChild(div_object)
         })
         infoText.innerHTML = ''
@@ -125,7 +138,7 @@ async function addTodo() {
 
     // Get value of Ul element and li is new object that uses funktion createTodoListItem
     let todosList = document.getElementById('todosList')
-    let li = createTodoListItem(todo)
+    let li = create_item(todo)
     todosList.appendChild(li)
 
     let infoText = document.getElementById('infoText')

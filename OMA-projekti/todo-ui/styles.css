@@ -4,14 +4,22 @@ body {
   margin: 0;
 
 }
+.images{
+  height: 10em;
+  width: auto;
+  
 
+}
 #container {
-  width: 562px;
+  width: 50em;
   background-color: aliceblue;
   border-radius: 3px;
   padding: 0px 15px 0px 15px;
   margin: 15px auto;
   border: 1px solid #ddd;
+  justify-content: center;
+  height: auto;
+
 }
 
 h1 {
@@ -46,8 +54,7 @@ button {
   font-weight: bold;
   font-size: 23px;
   position: relative;
-  left: 70px;
-  bottom: 88px;
+  
 }
 
 .edit {
@@ -61,8 +68,9 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
+  width: 50em;
   align-items: center;
+  height: auto;
 }
 .item {
   width: 24%;
@@ -70,12 +78,15 @@ button {
   box-sizing: border-box;
   float: left;
   text-align: center;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-radius: 10px;
   padding: 10px;
   box-shadow: 0 0 10px rgb(0, 0, 0 / 10%);
   transition: 1s;
   border: 1px solid black;
+}
+
+.text{
+  font-size: 1.2em;
 }
 
 

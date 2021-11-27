@@ -11,11 +11,13 @@
 <body onload="init()">
   <div id="container">
     <h1>Compound bow shop</h1>
-    <h3>mo</h3>
+    <h3>Create new item</h3>
     <input type="text" id="newTodo" placeholder="Manufacturer*"/>
     <input type="text" id="tietoa" placeholder="Model*"/>
     <input type="text" id="hinta" placeholder="price*"/>
     <input type="text" id="images" placeholder="image*"/>
+    <input type="checkbox" id="nappi" value="200" name="bt1" onclick="validate()">
+    <input type="text" id="test">
     <button id="actionbutton" onclick="addTodo()">Add</button>
     <div id="todosList"></div>
     <p id="infoText"></p>
