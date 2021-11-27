@@ -163,7 +163,8 @@ async function editTodo(id){
     // Get objects value
     document.getElementById("newTodo").value = document.getElementById(id).querySelector("p.text").firstChild.nodeValue
     document.getElementById("tietoa").value = document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue
-    document.getElementById("hinta").value = document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue 
+    document.getElementById("hinta").value = document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue
+    document.getElementById("hinta").value = document.getElementById(id).querySelector("image.images").firstChild.nodeValue  
     actionbutton.style.backgroundColor = "yellow"
     actionbutton.setAttribute("onclick","saveTodo('"+id+"')")
     //let a = document.getElementById(id).querySelector("p.text").firstChild.nodeValue

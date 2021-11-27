@@ -31,18 +31,17 @@ var upload = multer({ storage: storage })
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname + '/public'));
 
-
+// load single image
 app.post('/profile-upload-single', upload.single('profile-file'), function (req, res, next) {
     // req.file is the `profile-file` file
     // req.body will hold the text fields, if there were any
-    console.log(JSON.stringify(req.file))
     var response = '<a href="/">Home</a><br>'
     response += "Files uploaded successfully.<br>"
     response += `<img src="${req.file.path}" /><br>`
     return res.send(response)
 })
 
-
+// Load multiple images
 app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
     // req.files is array of `profile-files` files
     // req.body will contain the text fields, if there were any
