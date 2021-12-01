@@ -9,16 +9,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body onload="init()">
+  <form method="POST" action="http://localhost:3000/profile-upload-single" enctype="multipart/form-data">
+    <div>
+        <label>Upload profile picture</label>
+        <input type="file" name="profile-file" required/>
+    </div>
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+</form>
   <div id="container">
     <h1>Compound bow shop</h1>
     <h3>Create new item</h3>
     <input type="text" id="newTodo" placeholder="Manufacturer*"/>
     <input type="text" id="tietoa" placeholder="Model*"/>
     <input type="text" id="hinta" placeholder="price*"/>
-    <input type="text" id="images" placeholder="image*"/>
-    <input type="checkbox" id="nappi" value="200" name="bt1" onclick="validate()">
-    <input type="text" id="test">
-    <button id="actionbutton" onclick="addTodo()">Add</button>
+    <input type="text" id="image" placeholder="image*"/>
+    <input type="text" id="search" name="searchbar" placeholder="search">
+    <button id="actionbutton" onclick="add_item()">Add</button>
     <div id="todosList"></div>
     <p id="infoText"></p>
   </div>

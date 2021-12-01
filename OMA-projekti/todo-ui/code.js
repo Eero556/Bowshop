@@ -6,11 +6,24 @@
 
 
 
+
+
 //Starts the program ui ---> loadTodo
 function init() {
     let infoText = document.getElementById('infoText')
     infoText.innerHTML = 'Loading objects, wait...'
     load_items()
+    //Filter for database items
+    let search = document.getElementById("search");
+    search.addEventListener("keyup",(e)=>{
+        let searchstring = e.target.value.toLowerCase()
+        let filteredresponse = todos.filter(item =>{
+            return item.text.toLowerCase().includes(searchstring)
+        })
+        let container = document.getElementById("container")
+        
+        show_items(filteredresponse)
+    })
 }
 
 // load only wanted info
@@ -21,19 +34,18 @@ async function load_items() {
     
     let container = document.getElementById("container")
     let response = await fetch('http://localhost:3000/todos')
-    let todos = await response.json()
+    todos = await response.json()
     console.log(todos)
-    let vastaus = await fetch('http://localhost:3000/pse')
-    let pse = await vastaus.json()
-    console.log(pse)
+    
 
-    //After Todos has been loaded then showTodos funktion
+    //After Todos has been loaded then show_items funktion
     show_items(todos)
 }
 
 
 
 function create_item(todo) {
+
 
 
     // Creating new div element that hold unique mongo _id
@@ -60,10 +72,10 @@ function create_item(todo) {
     let hinta = document.createElement("p")
     hinta.className = "hinta"
     hinta.innerHTML = todo.hinta + "euroa"
-    console.log(todo.hinta)
+    
     //Image
     let image = document.createElement("img")
-    image.className = "images"
+    image.className = "item_picture"
     let apu = todo.image
     image.src = `http://localhost:3000/uploads/${apu}`
     
@@ -81,7 +93,7 @@ function create_item(todo) {
     span.className = "delete"
     let x = document.createTextNode(' x ')
     span.appendChild(x)
-    span.onclick = function () { removeTodo(todo._id) }
+    span.onclick = function () { remove_item(todo._id) }
     div.appendChild(span)
 
     
@@ -89,7 +101,7 @@ function create_item(todo) {
     // Creating span2 that has onclick event "edit property"
     let span2 = document.createElement("span");
     span2.className = "edit"
-    span2.onclick = function () {editTodo(todo._id)}
+    span2.onclick = function () {edit_item(todo._id)}
     let edit = document.createTextNode("edit")
     span2.appendChild(edit)
     div.appendChild(span2)
@@ -107,13 +119,13 @@ function show_items(todos) {
 
     // If no objects then modify infotextbox
     if (todos.length === 0) {
-        infoText.innerHTML = 'No objects'
+        infoText.innerHTML = 'No items with that search sorry'
         
     } else {
         // If there is objects then foreach make div object to Ul list called todolist
-        
+        // Search need this innerhtml or it just add matching items to the list
+        todosList.innerHTML = ""
         todos.forEach(todo => {
-
             let div_object = create_item(todo)
             todosList.appendChild(div_object)
         })
@@ -121,9 +133,12 @@ function show_items(todos) {
     }
 }
 // Make new object using post
-async function addTodo() {
+async function add_item() {
+    // Get input values
+
     let newTodo = document.getElementById('newTodo')
-    let image = document.getElementById("images")
+    let image = document.getElementById("image")
+    let tietoa = document.getElementById("tietoa")
     const data = { 'text': newTodo.value, "tietoa": tietoa.value, "hinta": hinta.value, "image": image.value}
     // Get all todos using fetch
     const response = await fetch('http://localhost:3000/todos', {
@@ -154,7 +169,7 @@ async function addTodo() {
 
 
 // Remove using Delete method // Using unique mongo _id to delete
-async function removeTodo(id) {
+async function remove_item(id) {
     const response = await fetch('http://localhost:3000/todos/'+id, {
       method: 'DELETE'
     })
@@ -169,7 +184,7 @@ async function removeTodo(id) {
     }
   }
 // Edit method
-async function editTodo(id){
+async function edit_item(id){
     let actionbutton = document.getElementById("actionbutton");
     actionbutton.innerHTML = "Save"
     
@@ -177,11 +192,10 @@ async function editTodo(id){
     document.getElementById("newTodo").value = document.getElementById(id).querySelector("p.text").firstChild.nodeValue
     document.getElementById("tietoa").value = document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue
     document.getElementById("hinta").value = document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue
-    document.getElementById("hinta").value = document.getElementById(id).querySelector("image.images").firstChild.nodeValue  
+    document.getElementById("image").value = document.getElementById(id).querySelector("img.item_picture").getAttribute("src")
     actionbutton.style.backgroundColor = "yellow"
-    actionbutton.setAttribute("onclick","saveTodo('"+id+"')")
-    //let a = document.getElementById(id).querySelector("p.text").firstChild.nodeValue
-    //let b = document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue
+    actionbutton.setAttribute("onclick","save_item('"+id+"')")
+    
     
 
 
@@ -189,11 +203,12 @@ async function editTodo(id){
 
 }
 // Using Put method to save edited values
-async function saveTodo (id){
+async function save_item(id){
     let newtitle = document.getElementById('newTodo')
     let newmodel = document.getElementById('tietoa')
     let newprize = document.getElementById('hinta')
-    const data = { 'text': newTodo.value, "_id": id, "tietoa": tietoa.value, "hinta": hinta.value }
+    let newimage = document.getElementById('image')
+    const data = { 'text': newTodo.value, "_id": id, "tietoa": tietoa.value, "hinta": hinta.value, "image": image.value }
     const response = await fetch('http://localhost:3000/todos', {
         method: 'PUT',
         headers: {
@@ -207,12 +222,13 @@ async function saveTodo (id){
     document.getElementById(id).querySelector("p.text").firstChild.nodeValue = todo.text
     document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue = todo.tietoa
     document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue = todo.hinta
+    document.getElementById(id).querySelector("img.item_picture").getAttribute("src") = todo.image
 
 
     let actionbutton = document.getElementById("actionbutton");
     
     // Return AddTodo onclick 
-    actionbutton.setAttribute("onclick","addTodo()")
+    actionbutton.setAttribute("onclick","add_item()")
     actionbutton.innerHTML = "Add"
     actionbutton.style.backgroundColor = ""
     
@@ -222,6 +238,7 @@ async function saveTodo (id){
     newTodo.value = ''
     tietoa.value = ""
     hinta.value = ""
+    image.value = ""
     
 
 

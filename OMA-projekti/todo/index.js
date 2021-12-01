@@ -43,17 +43,7 @@ app.post('/profile-upload-single', upload.single('profile-file'), function (req,
 })
 
 
-app.post('/profile-upload-multiple', upload.array('profile-files', 12), function (req, res, next) {
-    // req.files is array of `profile-files` files
-    // req.body will contain the text fields, if there were any
-    var response = '<a href="/">Home</a><br>'
-    response += "Files uploaded successfully.<br>"
-    for (var i = 0; i < req.files.length; i++) {
-        response += `<img src="${req.files[i].path}" /><br>`
-    }
 
-    return res.send(response)
-})
 
 
 // mongo login
