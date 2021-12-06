@@ -1,14 +1,7 @@
-// Get values from buttons/inputs..
 
 
 
-
-
-
-
-
-
-//Starts the program ui ---> loadTodo
+//Starts the program ui ---> load_items
 function init() {
     let infoText = document.getElementById('infoText')
     infoText.innerHTML = 'Loading objects, wait...'
@@ -17,10 +10,10 @@ function init() {
     let search = document.getElementById("search");
     search.addEventListener("keyup",(e)=>{
         let searchstring = e.target.value.toLowerCase()
-        let filteredresponse = todos.filter(item =>{
+        let filteredresponse = items.filter(item =>{
             return item.text.toLowerCase().includes(searchstring)
         })
-        let container = document.getElementById("container")
+        
         
         show_items(filteredresponse)
     })
@@ -29,31 +22,28 @@ function init() {
 // load only wanted info
 
 
-// Loads all todos from localhost
+// Loads all items from localhost
 async function load_items() {
     
-    let container = document.getElementById("container")
-    let response = await fetch('http://localhost:3000/todos')
-    todos = await response.json()
-    console.log(todos)
+    let response = await fetch('http://localhost:3000/item')
+    items = await response.json()
+    console.log(items)
     
 
     //After Todos has been loaded then show_items funktion
-    show_items(todos)
+    show_items(items)
 }
 
 
 
-function create_item(todo) {
-
-
+function create_item(item) {
 
     // Creating new div element that hold unique mongo _id
     let div = document.createElement('div')
     div.className = "item"
     // Creating new id for div element and let that value take the unique _id
     let div_attr = document.createAttribute('id') 
-    div_attr.value = todo._id
+    div_attr.value = item._id
 
     // kiinnitetään attribuutti Div-elementtiin
     div.setAttributeNode(div_attr)
@@ -61,22 +51,22 @@ function create_item(todo) {
     // Creating new <p> element for item
     let text = document.createElement("p")
     text.className = "text"
-    text.innerHTML = todo.text
+    text.innerHTML = item.text
     
     // Creating tietoa as testing <p> element
     let tietoa = document.createElement("p")
     tietoa.className = "tietoa"
-    tietoa.innerHTML = todo.tietoa
+    tietoa.innerHTML = item.tietoa
 
     //Creating hinta as test <p> element
     let hinta = document.createElement("p")
     hinta.className = "hinta"
-    hinta.innerHTML = todo.hinta + "euroa"
-    
+    hinta.innerHTML = item.hinta + "euroa"
+
     //Image
     let image = document.createElement("img")
     image.className = "item_picture"
-    let apu = todo.image
+    let apu = item.image
     image.src = `http://localhost:3000/uploads/${apu}`
     
 
@@ -93,7 +83,7 @@ function create_item(todo) {
     span.className = "delete"
     let x = document.createTextNode(' x ')
     span.appendChild(x)
-    span.onclick = function () { remove_item(todo._id) }
+    span.onclick = function () { remove_item(item._id) }
     div.appendChild(span)
 
     
@@ -101,7 +91,7 @@ function create_item(todo) {
     // Creating span2 that has onclick event "edit property"
     let span2 = document.createElement("span");
     span2.className = "edit"
-    span2.onclick = function () {edit_item(todo._id)}
+    span2.onclick = function () {edit_item(item._id)}
     let edit = document.createTextNode("edit")
     span2.appendChild(edit)
     div.appendChild(span2)
@@ -111,22 +101,21 @@ function create_item(todo) {
 }
 
 // Making new object that have been loaded using LoadTodo funktion
-function show_items(todos) {
+function show_items(items) {
     let todosList = document.getElementById('todosList')
     let infoText = document.getElementById('infoText')
-    let container = document.getElementById("container")
   
 
     // If no objects then modify infotextbox
-    if (todos.length === 0) {
+    if (items.length === 0) {
         infoText.innerHTML = 'No items with that search sorry'
         
     } else {
         // If there is objects then foreach make div object to Ul list called todolist
         // Search need this innerhtml or it just add matching items to the list
         todosList.innerHTML = ""
-        todos.forEach(todo => {
-            let div_object = create_item(todo)
+        items.forEach(item => {
+            let div_object = create_item(item)
             todosList.appendChild(div_object)
         })
         infoText.innerHTML = ''
@@ -136,32 +125,36 @@ function show_items(todos) {
 async function add_item() {
     // Get input values
 
-    let newTodo = document.getElementById('newTodo')
-    let image = document.getElementById("image")
+    let manufacturer = document.getElementById('manufacturer')
+    let hinta = document.getElementById("hinta")
     let tietoa = document.getElementById("tietoa")
-    const data = { 'text': newTodo.value, "tietoa": tietoa.value, "hinta": hinta.value, "image": image.value}
-    // Get all todos using fetch
-    const response = await fetch('http://localhost:3000/todos', {
+    const fileInput = document.querySelector('#image-download');
+
+    // new js object that includes all info that is needed
+    const formdata = new FormData();
+    formdata.append("text",manufacturer.value);
+    formdata.append("tietoa",tietoa.value);
+    formdata.append("hinta",hinta.value);
+    formdata.append("image-file", fileInput.files[0]);
+    
+    // Get all items using fetch
+    const response = await fetch('http://localhost:3000/item', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: formdata
     })
-    // todo gets value of todo object
-    let todo = await response.json()
+    // item gets value of item object
+    let item = await response.json()
 
     // Get value of Ul element and li is new object that uses funktion createTodoListItem
     let todosList = document.getElementById('todosList')
-    let li = create_item(todo)
+    let li = create_item(item)
     todosList.appendChild(li)
 
     let infoText = document.getElementById('infoText')
     infoText.innerHTML = ''
-    newTodo.value = ''
+    manufacturer.value = ''
     tietoa.value = ""
     hinta.value = ""
-    image.value = ""
 
 }
 
@@ -170,7 +163,7 @@ async function add_item() {
 
 // Remove using Delete method // Using unique mongo _id to delete
 async function remove_item(id) {
-    const response = await fetch('http://localhost:3000/todos/'+id, {
+    const response = await fetch('http://localhost:3000/item/'+id, {
       method: 'DELETE'
     })
     let responseJson = await response.json()
@@ -189,41 +182,43 @@ async function edit_item(id){
     actionbutton.innerHTML = "Save"
     
     // Get objects value
-    document.getElementById("newTodo").value = document.getElementById(id).querySelector("p.text").firstChild.nodeValue
+    document.getElementById("manufacturer").value = document.getElementById(id).querySelector("p.text").firstChild.nodeValue
     document.getElementById("tietoa").value = document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue
     document.getElementById("hinta").value = document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue
-    document.getElementById("image").value = document.getElementById(id).querySelector("img.item_picture").getAttribute("src")
     actionbutton.style.backgroundColor = "yellow"
     actionbutton.setAttribute("onclick","save_item('"+id+"')")
     
-    
-
-
-
 
 }
 // Using Put method to save edited values
 async function save_item(id){
-    let newtitle = document.getElementById('newTodo')
-    let newmodel = document.getElementById('tietoa')
-    let newprize = document.getElementById('hinta')
-    let newimage = document.getElementById('image')
-    const data = { 'text': newTodo.value, "_id": id, "tietoa": tietoa.value, "hinta": hinta.value, "image": image.value }
-    const response = await fetch('http://localhost:3000/todos', {
+    const fileInput = document.querySelector('#image-download');
+   console.log(id)
+    
+   // Make object that includes wanted info to be saved
+   try{
+    const formdata_edited = new FormData();
+    formdata_edited.append("text",manufacturer.value);
+    formdata_edited.append("tietoa",tietoa.value);
+    formdata_edited.append("hinta",hinta.value);
+    formdata_edited.append("image-file", fileInput.files[0]);
+    
+
+    
+    const response = await fetch('http://localhost:3000/item/'+id, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        body: formdata_edited
     })
-    let todo = await response.json()
+    let edited_item = await response.json()
     
     // Get objects value // Using query
-    document.getElementById(id).querySelector("p.text").firstChild.nodeValue = todo.text
-    document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue = todo.tietoa
-    document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue = todo.hinta
-    document.getElementById(id).querySelector("img.item_picture").getAttribute("src") = todo.image
-
+    document.getElementById(id).querySelector("p.text").firstChild.nodeValue = edited_item.text
+    document.getElementById(id).querySelector("p.tietoa").firstChild.nodeValue = edited_item.tietoa
+    document.getElementById(id).querySelector("p.hinta").firstChild.nodeValue = edited_item.hinta
+    document.getElementById(id).querySelector('img.image-download').firstChild.nodeValue = edited_item.image
+  
+    
+    
 
     let actionbutton = document.getElementById("actionbutton");
     
@@ -235,10 +230,13 @@ async function save_item(id){
     // Just makes more user friendly when you get saved text off the inputs
     let infoText = document.getElementById('infoText')
     infoText.innerHTML = ''
-    newTodo.value = ''
+    manufacturer.value = ''
     tietoa.value = ""
     hinta.value = ""
-    image.value = ""
+}catch{
+    console.log("Meni jotai pielee")
+}
+    
     
 
 

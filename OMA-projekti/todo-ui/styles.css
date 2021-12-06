@@ -21,6 +21,17 @@ body {
   height: auto;
 
 }
+#item-container {
+  width: 62em;
+  background-color: aliceblue;
+  border-radius: 3px;
+  padding: 0px 15px 0px 15px;
+  margin: 15px auto;
+  border: 1px solid #ddd;
+  justify-content: center;
+  height: auto;
+  box-shadow: 0 0 10px rgb(0, 0, 0 / 10%);
+}
 
 h1 {
   background-color: cadetblue;
@@ -68,7 +79,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 50em;
+  width: 100%;
   align-items: center;
   height: auto;
 }
