@@ -8,14 +8,14 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body onload="init()">
+<body>
   
   <div id="container">
     <h1>Compound bow shop</h1>
     <h3>Create new item</h3>
     <input type="text" id="manufacturer" placeholder="Manufacturer*"/>
-    <input type="text" id="tietoa" placeholder="Model*"/>
-    <input type="text" id="hinta" placeholder="price*"/>
+    <input type="text" id="model" placeholder="Model*"/>
+    <input type="text" id="price" placeholder="price*"/>
     <input type="file" id="image-download" name="image-file"/>
     <input type="text" id="search" name="searchbar" placeholder="search">
     <button id="actionbutton" onclick="add_item()">Add</button>
@@ -23,7 +23,7 @@
     <p id="infoText"></p>
   </div>
   <div id="item-container">
-    <div id="todosList"></div>
+    <div id="itemList"></div>
   </div>
   
 

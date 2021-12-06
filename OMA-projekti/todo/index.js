@@ -4,7 +4,7 @@ const app = express();
 const port = 3000
 const dotenv = require("dotenv")
 const multer = require("multer")
-
+const default_pic = "http://localhost:3000/uploads/no-image-available.png"
 
 // cors - allow connection from different domains and ports
 app.use(cors())
@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
-        
+
 
     }
 })
@@ -37,25 +37,24 @@ app.use(express.static(__dirname + '/public'));
 app.post('/item', upload.single('image-file'), async function (request, response, next) {
     // req.file is the `image-file` file
     // req.body will hold the text fields, if there were any
-    try{
-    const { text, tietoa, hinta } = request.body
-    
-    
+    try {
+        const { manufacturer, model, price } = request.body
 
-    const item = new Todo({
-        text: text,
-        tietoa: tietoa,
-        hinta: hinta,
-        image: request.file.originalname
-    })
-    const savedTodo = await item.save()
-    
-    response.json(savedTodo)
-    
-    
-} catch{
-    console.log("error")
-}
+
+        const item = new Todo({
+            manufacturer: manufacturer,
+            model: model,
+            price: price,
+            image: request.file.originalname
+        })
+        const savedTodo = await item.save()
+
+        response.json(savedTodo)
+
+
+    } catch {
+        console.log("error post method")
+    }
 })
 
 
@@ -81,10 +80,10 @@ db.once('open', () => {
 
 //Schema
 const todoSchema = new mongoose.Schema({
-    text: { type: String, required: true },
-    tietoa: { type: String, required: true },
-    hinta: { type: Number, required: true },
-    image: { type: String, required: true }
+    manufacturer: { type: String, required: true },
+    model: { type: String, required: true },
+    price: { type: Number, required: true },
+    image: { type: String, default: default_pic }
 })
 
 // Item model
@@ -98,15 +97,15 @@ const Todo = mongoose.model('Todo', todoSchema, 'todos')
 app.put('/item/:id', upload.single('image-file'), async (request, response) => {
 
     try {
-        const { text, tietoa, hinta } = request.body
-       
-        
+        const { manufacturer, model, price } = request.body
 
+
+        // Find item by id from database
         const item = await Todo.findById(request.params.id)
         console.log(item)
-        item.text = text
-        item.tietoa = tietoa
-        item.hinta = hinta
+        item.manufacturer = manufacturer
+        item.model = model
+        item.price = price
         item.image = request.file.originalname
         console.log(item)
 
@@ -120,13 +119,13 @@ app.put('/item/:id', upload.single('image-file'), async (request, response) => {
 })
 
 // test 
-let filter = { text: "pse" }
+let filter = { manufacturer: "pse" }
 app.get('/pse', async (request, response) => {
     const pse = await Todo.find(filter)
     response.json(pse)
 })
 
-app.get('/item', async  (request, response) => {
+app.get('/item', async (request, response) => {
     const todos = await Todo.find({})
     response.json(todos)
 })
