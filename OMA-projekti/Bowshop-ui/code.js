@@ -6,12 +6,13 @@ function init() {
     let infobox = document.getElementById('infoText')
     infobox.innerHTML = 'Loading objects, wait...'
     load_items()
-    //Filter for database items eventlistener
+
+    //Filter for database items eventlisteners
     let search = document.getElementById("search");
     search.addEventListener("keyup", (e) => {
         let searchstring = e.target.value.toLowerCase()
         let filteredresponse = items.filter(item => {
-            return item.manufacturer.toLowerCase().includes(searchstring)
+            return item.manufacturer.toLowerCase().includes(searchstring) || item.model.toLowerCase().includes(searchstring)
         })
 
 
@@ -59,10 +60,6 @@ function init() {
     let all_objects = document.getElementById("all_items");
     all_objects.addEventListener("click", init)
 
-
-
-    
-   
 }
 
 
@@ -212,8 +209,8 @@ async function remove_item(id) {
         method: 'DELETE'
     })
     let responseJson = await response.json()
-    let li = document.getElementById(id)
-    li.parentNode.removeChild(li)
+    let item_div = document.getElementById(id)
+    item_div.parentNode.removeChild(item_div)
 
     let itemList = document.getElementById('itemList')
     if (!itemList.hasChildNodes()) {

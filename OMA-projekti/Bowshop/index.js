@@ -4,7 +4,7 @@ const app = express();
 const port = 3000
 const dotenv = require("dotenv")
 const multer = require("multer")
-const default_pic = "http://localhost:3000/uploads/no-image-available.png"
+
 
 // cors - allow connection from different domains and ports
 app.use(cors())
@@ -83,7 +83,7 @@ const todoSchema = new mongoose.Schema({
     manufacturer: { type: String, required: true },
     model: { type: String, required: true },
     price: { type: Number, required: true },
-    image: { type: String, default: default_pic }
+    image: { type: String, default: "no-image-available.png" }
 })
 
 // Item model
