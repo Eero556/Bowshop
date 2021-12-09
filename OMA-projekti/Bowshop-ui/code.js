@@ -17,6 +17,51 @@ function init() {
 
         show_items(filteredresponse)
     })
+
+    
+
+    let bowtech = document.getElementById("bowtech");
+    bowtech.addEventListener("click", ()=>{
+        let bowtech_search = "Bowtech"
+        let bowtech_items = items.filter(item => {
+            return item.manufacturer.includes(bowtech_search)
+        })
+        show_items(bowtech_items)
+    })
+
+    let pse = document.getElementById("pse");
+    pse.addEventListener("click", ()=>{
+        let pse_search = "Pse"
+        let pse_items = items.filter(item => {
+            return item.manufacturer.includes(pse_search)
+        })
+        show_items(pse_items)
+    })
+
+    let elite = document.getElementById("elite");
+    elite.addEventListener("click", () =>{
+        let elite_search = "Elite"
+        let elite_items = items.filter(item =>{
+            return item.manufacturer.includes(elite_search)
+        })
+        show_items(elite_items)
+    })
+
+    let hoyt = document.getElementById("hoyt");
+    hoyt.addEventListener("click", () =>{
+        let hoyt_search = "Hoyt"
+        let hoyt_items = items.filter(item =>{
+            return item.manufacturer.includes(hoyt_search)
+        })
+        show_items(hoyt_items)
+    })
+
+    let all_objects = document.getElementById("all_items");
+    all_objects.addEventListener("click", init)
+
+
+
+    
    
 }
 

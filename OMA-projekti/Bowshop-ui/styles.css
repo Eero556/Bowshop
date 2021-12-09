@@ -2,7 +2,7 @@ body {
   font-family: 'Oswald', sans-serif;
   box-sizing: border-box;
   margin: 0;
-
+  
 }
 .item_picture{
   height: 10em;
@@ -22,7 +22,7 @@ body {
 
 }
 #item-container {
-  width: 62em;
+  width: 63em;
   background-color: aliceblue;
   border-radius: 3px;
   padding: 0px 15px 0px 15px;
@@ -65,6 +65,7 @@ button {
   font-weight: bold;
   font-size: 23px;
   position: relative;
+  display: none;
   
 }
 
@@ -72,6 +73,7 @@ button {
   cursor: pointer;
   color: aqua;
   position: relative;
+  display: none;
   
 }
 
@@ -84,22 +86,47 @@ button {
   height: auto;
 }
 .item {
-  width: 24%;
+  width: 20%;
   margin: 15px;
   box-sizing: border-box;
   float: left;
   text-align: center;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 0 10px rgb(0, 0, 0 / 10%);
   transition: 1s;
   border: 1px solid black;
+  box-shadow: 0 3px 14px rgb(0 0 0 / 7%);
 }
 
+.item:hover .edit {
+  display: inline-flex;
+  padding-left: 5%;
+}
+
+.item:hover .delete{
+  display: inline-flex;
+  padding-left: 5%;
+}
 .text{
   font-size: 1.2em;
+  
 }
 
+#navbar{
+  list-style: none;
+  overflow: hidden;
+  text-align: center;
+  width: 100%;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+li{
+  padding: 0.5em 1.2em;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
 
 @media (max-width: 800px) {
   #todosList {
