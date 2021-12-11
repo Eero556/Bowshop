@@ -23,5 +23,7 @@ Nodejs reitit
 
 Nodejs reitit expres:sin avulla.
 
+![](OMA-projekti/Dokumentaatio/images/routes.PNG)
+
 
 Front end
