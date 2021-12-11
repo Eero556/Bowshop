@@ -13,7 +13,7 @@ Harjoitustyön aiheena on taljajousikauppa, jossa tulee kaikki CRUD ominaisuudet
 
 Harjoitustyön kannalta tärkeimmät funktiot/piirteet:
 
-Back end
+Backend
 
 Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaan. Scheman luomisessa on rajoituksia esim. onko se number/string.
 
@@ -31,6 +31,6 @@ Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin. Huom! Upload
 ![](OMA-projekti/Dokumentaatio/images/edit-route.PNG)
 
 
-Front end
+Frontend
 
 
