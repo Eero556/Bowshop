@@ -1,9 +1,0 @@
-PUT  http://localhost:3000/item/61adc1bcdbf65ce22e37e078 
-Content-Type: application/json
-
-{
-    "text": "mo2ro",
-    "tietoa": "mall2i",
-    "hinta": 1020,
-    "image": "joku.png"
-}
