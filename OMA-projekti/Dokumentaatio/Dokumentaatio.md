@@ -16,5 +16,8 @@ Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaa
 
 ![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
 
+Nodejs reitit
+
+
 
 Front end
