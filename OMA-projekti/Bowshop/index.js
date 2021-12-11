@@ -49,27 +49,6 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname + '/public'));
 
 
-app.post('/item', upload.single('image-file'), async function (request, response, next) {
-    // req.file is the `image-file` file
-    // req.body will hold the text fields, if there were any
-    try {
-        const { manufacturer, model, price } = request.body
-
-        
-        const item = new Item({
-            manufacturer: manufacturer,
-            model: model,
-            price: price,
-            image: request.file.originalname
-        })
-
-        const savedItem = await item.save()
-        response.json(savedItem)
-
-    } catch (error) {
-        console.log(error)
-    }
-})
 
 
 
@@ -105,6 +84,30 @@ const Item = mongoose.model('Item', itemSchema, 'Items')
 
 
 // Routes for app
+// Post route
+
+app.post('/item', upload.single('image-file'), async function (request, response, next) {
+    // req.file is the `image-file` file
+    // req.body will hold the text fields, if there were any
+    try {
+        const { manufacturer, model, price } = request.body
+
+        
+        const item = new Item({
+            manufacturer: manufacturer,
+            model: model,
+            price: price,
+            image: request.file.originalname
+        })
+
+        const savedItem = await item.save()
+        response.json(savedItem)
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 //Edit route
 app.put('/item/:id', upload.single('image-file'), async (request, response) => {
