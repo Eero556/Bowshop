@@ -14,5 +14,7 @@ Back end
 
 Mongodb scheman luominen ja siitä modelin teko.
 
+![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
+
 
 Front end
