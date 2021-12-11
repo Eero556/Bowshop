@@ -13,7 +13,7 @@ body {
 .item_picture{
   height: 10em;
   width: auto;
-  max-width: 120px;
+  max-width: 100%;
   object-fit: contain;
   
 }
@@ -37,8 +37,6 @@ body {
   justify-content: center;
   height: auto;
   box-shadow: 0 0 10px rgb(0, 0, 0 / 10%);
-  
-
 }
 
 h1 {
@@ -96,12 +94,10 @@ button {
   
 }
 
-#ItemList-container{
-  display: flex;
-}
+
 #itemList{
   display: flex;
-  width: 60%;
+  width: 70%;
   height: auto;
   flex-wrap: wrap;
   border: 1px solid black;
@@ -172,5 +168,20 @@ li{
   .item {
       width: auto;
       margin: auto;
+  }
+}
+
+@media only screen and (max-width: 2134px){
+  
+  #itemList{
+    width: 50%;
+    min-width: 50%;
+    
+    
+  }
+  .item{
+    min-width: 20%;
+    margin: auto;
+    width: auto;
   }
 }

@@ -23,8 +23,6 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
-
-
     }
 })
 var upload = multer({
@@ -35,8 +33,8 @@ var upload = multer({
 })
 
 function fileFilter(req, file, cb) {
-    // Accepts only jpeg or png mimetype
-    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    // Accepts only jpeg, jpg or png mimetype
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png" || file.mimetype === "image/jpg") {
         cb(null, true)
     }
     else {
@@ -46,7 +44,6 @@ function fileFilter(req, file, cb) {
     }
 
 }
-
 // Multer storage for images -> /uploads dir
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname + '/public'));
@@ -100,12 +97,11 @@ const itemSchema = new mongoose.Schema({
     manufacturer: { type: String, required: true },
     model: { type: String, required: true },
     price: { type: Number, required: true },
-    image: { type: String, default: "no-image-available.png" }
+    image: { type: String, required: true }
 })
 
 // Item model
 const Item = mongoose.model('Item', itemSchema, 'Items')
-
 
 
 // Routes for app
@@ -116,15 +112,12 @@ app.put('/item/:id', upload.single('image-file'), async (request, response) => {
     try {
         const { manufacturer, model, price } = request.body
 
-
         // Find item by id from database
         const item = await Item.findById(request.params.id)
-        console.log(item)
         item.manufacturer = manufacturer
         item.model = model
         item.price = price
         item.image = request.file.originalname
-        console.log(item)
 
         const saveditem = await item.save()
         response.json(saveditem)

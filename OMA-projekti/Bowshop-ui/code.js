@@ -1,15 +1,13 @@
 
-// Eventlistener when page loads
+// Eventlistener when page loads -> init funktion
 window.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
     let infobox = document.getElementById('infoText')
     infobox.innerHTML = 'Loading objects, wait...'
+
+    // Call load_items funktion to get all items
     load_items()
-
-
-    let container = document.getElementById("container")
-
 
     //Filter for database items eventlisteners
     let search = document.getElementById("search");
@@ -18,7 +16,6 @@ function init() {
         let filteredresponse = items.filter(item => {
             return item.manufacturer.toLowerCase().includes(searchstring) || item.model.toLowerCase().includes(searchstring)
         })
-
 
         show_items(filteredresponse)
     })
@@ -66,9 +63,6 @@ function init() {
 
 }
 
-
-
-
 // Loads all items from localhost
 async function load_items() {
 
@@ -79,8 +73,6 @@ async function load_items() {
     //After Todos has been loaded then show_items funktion
     show_items(items)
 }
-
-
 
 function create_item(item) {
 
@@ -157,8 +149,8 @@ function show_items(items) {
         infoText.innerHTML = 'No items with that search sorry'
 
     } else {
-        // If there is objects then foreach make div object to Ul list called todolist
-        // Search need this innerhtml or it just add matching items to the list
+        // If there is objects then foreach make div object to div called itemList
+        // 
         itemList.innerHTML = ""
         items.forEach(item => {
             let div_object = create_item(item)
@@ -204,9 +196,6 @@ async function add_item() {
 
 }
 
-
-
-
 // Remove using Delete method // Using unique mongo _id to delete
 async function remove_item(id) {
     const response = await fetch('http://localhost:3000/item/' + id, {
@@ -240,7 +229,6 @@ async function edit_item(id) {
 async function save_item(id) {
     const fileInput = document.querySelector('#image-download');
 
-
     // Make object that includes wanted info to be saved
     try {
         const formdata_edited = new FormData();
@@ -257,18 +245,16 @@ async function save_item(id) {
         })
         let edited_item = await response.json()
 
-        // Get objects value // Using query
+        // Get object values 
         document.getElementById(id).querySelector("p.manufacturer").firstChild.nodeValue = edited_item.manufacturer
         document.getElementById(id).querySelector("p.model").firstChild.nodeValue = edited_item.model
         document.getElementById(id).querySelector("p.price").firstChild.nodeValue = edited_item.price
         document.getElementById(id).querySelector('img.image-download').firstChild.nodeValue = edited_item.image
 
 
-
-
         let actionbutton = document.getElementById("actionbutton");
 
-        // Return AddTodo onclick 
+        // Return Add_item onclick 
         actionbutton.setAttribute("onclick", "add_item()")
         actionbutton.innerHTML = "Add"
         actionbutton.style.backgroundColor = ""
@@ -282,10 +268,6 @@ async function save_item(id) {
     } catch {
         console.log("Something went wrong")
     }
-
-
-
-
 
 }
 
