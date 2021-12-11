@@ -8,11 +8,11 @@ Harjoitustyönä ajattelin tehdä pienen harjoitustyön tämän fullstack kurssi
 
 Harjoitustyön aiheena on taljajousikauppa, jossa tulee kaikki CRUD ominaisuudet esille. Crudissa on siis mahdollista luoda, poistaa, lukea ja päivittää haluttu objekti. Tietoturvaa en tähän työhön laittanut, koska ei ole rahaa pelissä eikä mitään muutakaan menetettävää. Jos olisin halunnut tehdä validaattorin olisin voinut käyttää Googlen Firebasea, mutta totesin sen olevan turha tämän tyyppiseen appiin.
 
-Harjoitustyön kannalta tärkeimmät funktiot:
+Harjoitustyön kannalta tärkeimmät funktiot/piirteet:
 
 Back end
 
-Mongodb scheman luominen ja siitä modelin teko.
+Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaan.
 
 ![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
 
