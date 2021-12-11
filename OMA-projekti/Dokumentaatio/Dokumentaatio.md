@@ -21,6 +21,7 @@ Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Te
 
 Nodejs reitit
 
+Nodejs reitit expres:sin avulla.
 
 
 Front end
