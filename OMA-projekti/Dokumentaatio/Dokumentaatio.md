@@ -12,7 +12,7 @@ Harjoitustyön kannalta tärkeimmät funktiot/piirteet:
 
 Back end
 
-Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaan.
+Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaan. Scheman luomisessa on rajoituksia esim. onko se number/string.
 
 ![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
 
@@ -29,3 +29,5 @@ Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin. Huom! Upload
 
 
 Front end
+
+
