@@ -16,7 +16,7 @@ Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaa
 
 ![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
 
-Multer mahdollistaa kuvien lähetyksen.
+Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Tehdään oma varasto kuville ja annetaan ehtoja esim. mimetype saa olla vain jpg/png mallia.
 ![](OMA-projekti/Dokumentaatio/images/multer.PNG)
 
 Nodejs reitit
