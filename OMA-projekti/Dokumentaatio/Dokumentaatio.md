@@ -16,7 +16,7 @@ Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaa
 
 ![](OMA-projekti/Dokumentaatio/images/mongo-model.PNG)
 
-Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Tehdään oma varasto kuville ja annetaan ehtoja esim. mimetype saa olla vain jpg/png mallia.
+Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Tehdään oma varasto kuville ja annetaan ehtoja esim. mimetype saa olla vain jpg/png mallia.Huom! Upload funktiota, jossa multer mukana.
 ![](OMA-projekti/Dokumentaatio/images/multer.PNG)
 
 
@@ -24,8 +24,8 @@ Nodejs reitit expres:sin avulla.
 
 ![](OMA-projekti/Dokumentaatio/images/routes.PNG)
 
-Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin.
-
+Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin. Huom! Upload funktiota, jossa multer mukana.
+![](OMA-projekti/Dokumentaatio/images/edit-route.PNG)
 
 
 Front end
