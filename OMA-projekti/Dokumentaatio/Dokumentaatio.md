@@ -1,4 +1,5 @@
-Dokumentaatio Fullstack
+Dokumentaatio Fullstack 
+Video esittely https://jamkstudent.sharepoint.com/:v:/s/es/EawRt0nmL2VBlMVCgUvSJRwBDbL5ZsmVMbauR15fBn0WPw?e=zIoGFZ
 
 
 Eero Kantonen AA4106
