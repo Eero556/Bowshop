@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const app = express();
-const port = 3000
 const dotenv = require("dotenv")
 const multer = require("multer")
+
 
 
 // cors - allow connection from different domains and ports
@@ -150,7 +150,7 @@ app.delete('/item/:id', async (request, response) => {
 })
 
 
-// app listen port 3000
-app.listen(port, () => {
-    console.log('Example app listening on port 3000')
+// app listen port x
+app.listen(process.env.port, () => {
+    console.log('Example app listening on port x')
 })
