@@ -7,6 +7,10 @@ function init() {
     infobox.innerHTML = 'Loading objects, wait...'
     load_items()
 
+
+    let container = document.getElementById("container")
+
+
     //Filter for database items eventlisteners
     let search = document.getElementById("search");
     search.addEventListener("keyup", (e) => {
@@ -103,7 +107,7 @@ function create_item(item) {
     //Creating price element <p> for item
     let price = document.createElement("p")
     price.className = "price"
-    price.innerHTML = item.price + "euroa"
+    price.innerHTML = item.price + " €"
 
     //Image
     let image = document.createElement("img")

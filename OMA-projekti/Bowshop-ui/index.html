@@ -1,39 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+  </style>
   <meta charset="UTF-8">
   <title>My first nodejs app</title>
   <link rel="stylesheet" href="styles.css">
   <script src="code.js"></script>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-  
+
   <div id="container">
     <h1>Compound bow shop</h1>
     <h3>Create new item</h3>
-    <input type="text" id="manufacturer" placeholder="Manufacturer*"/>
-    <input type="text" id="model" placeholder="Model*"/>
-    <input type="text" id="price" placeholder="price*"/>
-    <input type="file" id="image-download" name="image-file"/>
+    <input type="text" id="manufacturer" placeholder="Manufacturer*" />
+    <input type="text" id="model" placeholder="Model*" />
+    <input type="text" id="price" placeholder="Price*" />
+    <input type="file" id="image-download" name="image-file" />
     <button id="actionbutton" onclick="add_item()">Add</button>
+
     
-    <p id="infoText"></p>
   </div>
-  
+
+  <div></div>
+
+  <div id="item-container"></div>
   <ul id="navbar">
     <li id="bowtech">Bowtech</li>
     <li id="pse">Pse</li>
     <li id="elite">Elite</li>
     <li id="hoyt">Hoyt</li>
     <li id="all_items">All bows</li>
-    <input type="text" id="search" name="searchbar" placeholder="search" autocomplete="off">
+    <input type="text" id="search" name="searchbar" placeholder="Search" autocomplete="off">
+    <p id="infoText"></p>
   </ul>
-  <div id="item-container">
-    <div id="itemList"></div>
-  </div>
-  
+  <div id="ItemList-container">
+  <div id="itemList"></div>
+</div>
 
 </body>
+
 </html>

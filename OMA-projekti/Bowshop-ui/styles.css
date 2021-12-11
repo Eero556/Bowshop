@@ -1,16 +1,24 @@
-body {
-  font-family: 'Oswald', sans-serif;
-  box-sizing: border-box;
+html{
   margin: 0;
-  
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+
 }
 .item_picture{
   height: 10em;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
   
 }
 #container {
   width: 50em;
-  background-color: aliceblue;
   border-radius: 3px;
   padding: 0px 15px 0px 15px;
   margin: 15px auto;
@@ -18,23 +26,23 @@ body {
   justify-content: center;
   height: auto;
   justify-content: center;
+  
 
 }
 #item-container {
-  width: 80em;
-  background-color: aliceblue;
+  width: 82em;
   border-radius: 3px;
   padding: 0px 15px 0px 15px;
   margin: 15px auto;
-  border: 1px solid #ddd;
   justify-content: center;
   height: auto;
   box-shadow: 0 0 10px rgb(0, 0, 0 / 10%);
+  
 
 }
 
 h1 {
-  background-color: cadetblue;
+  background-color: #282422;
   text-align: center;
   color: white;
   padding: 5px;
@@ -44,12 +52,23 @@ h1 {
 
 input[type=text] {
   border: 1px solid #ccc;
-  padding: 5px;
-  width: 300px;
+  padding: 0.3em;
+  width: 17em;
   font-size: 15px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 1em;
+  border-radius: 3em;
+  background: #282422;
+  color: whitesmoke;
+  border: none;
 }
+
+
+::placeholder{
+  color: whitesmoke;
+}
+
+
 
 button {
   border: 1px solid #ccc;
@@ -63,39 +82,49 @@ button {
   cursor: pointer;
   color: red;
   font-weight: bold;
-  font-size: 23px;
-  position: relative;
+  font-size: 2em;
   display: none;
+  
+  
   
 }
 
 .edit {
   cursor: pointer;
   color: aqua;
-  position: relative;
   display: none;
   
 }
 
+#ItemList-container{
+  display: flex;
+}
 #itemList{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
+  width: 60%;
   height: auto;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  text-align: center;
+  margin: auto;
+  
 }
 .item {
-  width: 20%;
-  margin: 1em;
-  box-sizing: border-box;
-  float: left;
+  width: 15%;
+  height: auto;
+  margin: 0.5em;
   text-align: center;
   border-radius: 10px;
-  padding: 1em;
-  transition: 1s;
+  padding: 0.1em;
   border: 1px solid black;
   box-shadow: 0 3px 14px rgb(0 0 0 / 7%);
+  
+  
+}
+
+#infoText{
+  color: whitesmoke;
+  padding-left: 2em;
 }
 
 .item:hover .edit {
@@ -112,13 +141,20 @@ button {
   
 }
 
+#search{
+  position: relative;
+  left: 1%;
+}
+
 #navbar{
   list-style: none;
-  overflow: hidden;
   text-align: center;
   width: 100%;
-  align-items: center;
-  background-color: whitesmoke;
+  height: auto;
+  background-color: #1c1c1c;
+  display: flex;
+  position: relative;
+  justify-content: center;
 }
 
 li{
@@ -127,13 +163,14 @@ li{
   display: inline-block;
   cursor: pointer;
   border: 1px solid black;
+  color: whitesmoke;
+  height: auto;
+  font-size: 1.3em;
 }
 
-@media (max-width: 800px) {
-  #item-container {
-    width: 100%;
-    
-    
+@media (max-width: 960px){
+  .item {
+      width: auto;
+      margin: auto;
   }
-  
 }

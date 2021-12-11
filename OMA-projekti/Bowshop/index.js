@@ -27,9 +27,27 @@ var storage = multer.diskStorage({
 
     }
 })
-var upload = multer({ storage: storage })
+var upload = multer({
+    storage: storage, limits: {
+        fileSize: 1024 * 1024 * 2
+    },
+    fileFilter: fileFilter
+})
 
+function fileFilter(req, file, cb) {
+    // Accepts only jpeg or png mimetype
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+        cb(null, true)
+    }
+    else {
+        
+        cb(null, false)
+        
+    }
 
+}
+
+// Multer storage for images -> /uploads dir
 app.use('/uploads', express.static('uploads'));
 app.use(express.static(__dirname + '/public'));
 
@@ -40,20 +58,19 @@ app.post('/item', upload.single('image-file'), async function (request, response
     try {
         const { manufacturer, model, price } = request.body
 
-
-        const item = new Todo({
+        
+        const item = new Item({
             manufacturer: manufacturer,
             model: model,
             price: price,
             image: request.file.originalname
         })
-        const savedTodo = await item.save()
 
-        response.json(savedTodo)
+        const savedItem = await item.save()
+        response.json(savedItem)
 
-
-    } catch {
-        console.log("error post method")
+    } catch (error) {
+        console.log(error)
     }
 })
 
@@ -64,7 +81,7 @@ app.post('/item', upload.single('image-file'), async function (request, response
 // mongo login
 
 const mongoose = require('mongoose')
-const { response } = require('express')
+const { response, request } = require('express')
 
 // Mongo connectstring
 const mongoDB = process.env.mongoDB
@@ -79,7 +96,7 @@ db.once('open', () => {
 // Mongoose Scheema
 
 //Schema
-const todoSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
     manufacturer: { type: String, required: true },
     model: { type: String, required: true },
     price: { type: Number, required: true },
@@ -87,7 +104,7 @@ const todoSchema = new mongoose.Schema({
 })
 
 // Item model
-const Todo = mongoose.model('Todo', todoSchema, 'todos')
+const Item = mongoose.model('Item', itemSchema, 'Items')
 
 
 
@@ -101,7 +118,7 @@ app.put('/item/:id', upload.single('image-file'), async (request, response) => {
 
 
         // Find item by id from database
-        const item = await Todo.findById(request.params.id)
+        const item = await Item.findById(request.params.id)
         console.log(item)
         item.manufacturer = manufacturer
         item.model = model
@@ -118,28 +135,24 @@ app.put('/item/:id', upload.single('image-file'), async (request, response) => {
 
 })
 
-// test 
-let filter = { manufacturer: "pse" }
-app.get('/pse', async (request, response) => {
-    const pse = await Todo.find(filter)
-    response.json(pse)
-})
 
+// Get all items
 app.get('/item', async (request, response) => {
-    const todos = await Todo.find({})
+    const todos = await Item.find({})
     response.json(todos)
 })
 
+// get one item with id
 app.get('/item/:id', async (request, response) => {
-    const todo = await Todo.findById(request.params.id)
+    const todo = await Item.findById(request.params.id)
     if (todo) response.json(todo)
     else response.status(404).end()
 })
 
 //Delete route for item
 app.delete('/item/:id', async (request, response) => {
-    const deletedTodo = await Todo.findByIdAndRemove(request.params.id)
-    if (deletedTodo) response.json(deletedTodo)
+    const deleted_item = await Item.findByIdAndRemove(request.params.id)
+    if (deleted_item) response.json(deleted_item)
     else response.status(404).end()
 })
 
