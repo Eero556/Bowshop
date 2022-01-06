@@ -36,21 +36,21 @@ Käyttäjän näkökulma kun avataan ohjelma. Tässä ohjelmassa voit muokata, p
 
 Ohjelma aloittaa heti kun sivu lautautuu. Heti ladataan nodejs:n kautta kaikki itemit load_items funktiolla.
 
-![](OMA-projekti/Dokumentaatio/images/init.PNG)
+![](./images/init.PNG)
 
 Load_items funktio kutsuu itemien ladattua show_items funktiota joka saa parametriksi items objectin. Sitten käydään foreach loopilla jokainen item objekti läpi ja tehdään item, joka näkyy html sivulla.
 
-![](OMA-projekti/Dokumentaatio/images/show.png)
+![](./images/show.png)
 
 Esitten lyhyesti Post ja Put metodin, koska nämä olivat hieman hankalempia kuin delete/get metodit.
 
 Funktiossa add_item funktio tehdään html sivulla olevalle lomakkeelle tarvittavat tiedot ja painetaan add. Tällöin koodi tekee FormData objektin, joka sisältää lomakkeelta tulevat arvot. Tämä sitten käyttää http protokollaa, jotta nodejs ja mongodb saavat sitten tiedon.
 
-![](OMA-projekti/Dokumentaatio/images/make-item.png)
+![](./images/make-item.png)
 
 Put metodi eli pystyn muokkaamaan jo tehtyä item objektia. Tässä metodissa meni eniten aikaa, mutta kyllä sitten lopulta onnistuttiin varsin hyvin. Tuli monta uutta asiaa vastaa, jolla pystyy referoimaan tiettyä objektin arvoa quaryllä.
 
-![](OMA-projekti/Dokumentaatio/images/save.png)
+![](./images/save.png)
 Tässä oli projektini tärkeimmät pääpiirteet, muut ovat mielestäni niin selkeitä niin niihin en paneudu sen enempää.
 
 
