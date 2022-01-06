@@ -17,7 +17,7 @@ Backend
 
 Mongodb scheman luominen, modelin luominen ja yhteyden muodostaminen tietokantaan. Scheman luomisessa on rajoituksia esim. onko se number/string.
 
-![picture](Dokumentaatio/images/mongo-model.PNG)
+![picture](./images/mongo-model.PNG)
 
 Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Tehdään oma varasto kuville ja annetaan ehtoja esim. mimetype saa olla vain jpg/png mallia.Huom! Upload funktiota, jossa multer mukana.
 ![](OMA-projekti/Dokumentaatio/images/multer.PNG)
