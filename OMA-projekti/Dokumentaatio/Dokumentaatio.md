@@ -22,10 +22,10 @@ Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Te
 
 Nodejs reitit käyttäen express. 
 
-![picture](./images/nodejs-reitit.PNG
+![picture](./images/nodejs-reitit.PNG)
 
 Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin. Huom! Upload funktiota, jossa multer mukana.
-![](./images/edit-route.PNG)
+![picture](./images/edit-route.PNG)
 
 
 Frontend
