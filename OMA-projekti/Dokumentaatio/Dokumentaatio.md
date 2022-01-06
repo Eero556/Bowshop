@@ -23,7 +23,7 @@ Multer mahdollistaa kuvien lähetyksen. Kuvassa nähdään Multerin toiminta. Te
 ![](OMA-projekti/Dokumentaatio/images/multer.PNG)
 
 
-Nodejs reitit expres:sin avulla. 
+Nodejs reitit käyttäen express. 
 
 ![picture](./images/routes.PNG)
 
