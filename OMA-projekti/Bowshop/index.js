@@ -134,14 +134,14 @@ app.put('/item/:id', upload.single('image-file'), async (request, response) => {
 
 // Get all items
 app.get('/item', async (request, response) => {
-    const todos = await Item.find({})
-    response.json(todos)
+    const items = await Item.find({})
+    response.json(items)
 })
 
 // get one item with id
 app.get('/item/:id', async (request, response) => {
-    const todo = await Item.findById(request.params.id)
-    if (todo) response.json(todo)
+    const item = await Item.findById(request.params.id)
+    if (item) response.json(item)
     else response.status(404).end()
 })
 
