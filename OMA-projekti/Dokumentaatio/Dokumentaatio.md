@@ -4,7 +4,7 @@ Dokumentaatio Fullstack
 Eero Kantonen AA4106
 
 
-Harjoitustyönä ajattelin tehdä pienen harjoitustyön tämän fullstack kurssin pohjalta. Harjoitus työssäni käytän back-endin tekemiseen Nodejs/mongodb ja front-end:ssä käytän ihan vanilla Javascriptiä. Harrastan taljajousiammuntaa, joten oli todella helppo löytää oma aihe harjoitustyöhön. 
+Harjoitus työssäni käytän back-endin tekemiseen Nodejs/mongodb ja front-end:ssä käytän ihan vanilla Javascriptiä. Harrastan taljajousiammuntaa, joten oli todella helppo löytää oma aihe harjoitustyöhön. 
 
 Harjoitustyön aiheena on taljajousikauppa, jossa tulee kaikki CRUD ominaisuudet esille. Crudissa on siis mahdollista luoda, poistaa, lukea ja päivittää haluttu objekti. Tietoturvaa en tähän työhön laittanut, koska ei ole rahaa pelissä eikä mitään muutakaan menetettävää. Jos olisin halunnut tehdä validaattorin olisin voinut käyttää Googlen Firebasea, mutta totesin sen olevan turha tämän tyyppiseen appiin. Harjoitustyössä käytin visualstudio codea ja kommentoin koodini englanniksi.
 
@@ -30,7 +30,7 @@ Edit route oli reiteistä haastavin, mutta siitä selvittiin hyvin. Huom! Upload
 
 Frontend
 
-Käyttäjän näkökulma kun avataan ohjelma. Tässä ohjelmassa voit muokata, poistaa tai luoda uuden tavaran kauppaan käyttäen lomaketta. Kaikki tehdään http pyyntöjen kautta, jolloin saadaan mongodb tieto myös. Tulevaisuudessa haluan tehdä reactilla perus vanilla javascriptin sijaan.
+Käyttäjän näkökulma kun avataan ohjelma. Tässä ohjelmassa voit muokata, poistaa tai luoda uuden tavaran kauppaan käyttäen lomaketta. Kaikki tehdään http pyyntöjen kautta, jolloin saadaan mongodb tieto myös ajantasalle.
 
 ![picture](./images/bowshop-html.PNG)
 
