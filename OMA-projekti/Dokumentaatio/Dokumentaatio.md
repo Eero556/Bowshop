@@ -4,9 +4,9 @@ Dokumentaatio Fullstack
 Eero Kantonen AA4106
 
 
-Harjoitus työssäni käytän back-endin tekemiseen Nodejs/mongodb ja front-end:ssä käytän ihan vanilla Javascriptiä. Harrastan taljajousiammuntaa, joten oli todella helppo löytää oma aihe harjoitustyöhön. 
+Tässä projektissani käytän back-endin tekemiseen Nodejs/mongodb ja front-end:ssä käytän ihan vanilla Javascriptiä. Harrastan taljajousiammuntaa, joten oli todella helppo löytää oma aihe harjoitustyöhön. 
 
-Harjoitustyön aiheena on taljajousikauppa, jossa tulee kaikki CRUD ominaisuudet esille. Crudissa on siis mahdollista luoda, poistaa, lukea ja päivittää haluttu objekti. Tietoturvaa en tähän työhön laittanut, koska ei ole rahaa pelissä eikä mitään muutakaan menetettävää. Jos olisin halunnut tehdä validaattorin olisin voinut käyttää Googlen Firebasea, mutta totesin sen olevan turha tämän tyyppiseen appiin. Harjoitustyössä käytin visualstudio codea ja kommentoin koodini englanniksi.
+Aiheena on taljajousikauppa, jossa tulee kaikki CRUD ominaisuudet esille. Crudissa on siis mahdollista luoda, poistaa, lukea ja päivittää haluttu objekti. Tietoturvaa en tähän työhön laittanut, koska ei ole rahaa pelissä eikä mitään muutakaan menetettävää. Jos olisin halunnut tehdä validaattorin olisin voinut käyttää Googlen Firebasea, mutta totesin sen olevan turha tämän tyyppiseen appiin. Käytin visual studio codea ja kommentoin koodini englanniksi.
 
 Harjoitustyön kannalta tärkeimmät funktiot/piirteet:
 
@@ -61,5 +61,5 @@ Todella vaikea arvioida paljon tähän olen kuluttanut aikaa, mutta jos pitäisi
 
 Kehityskohteet
 
-Olen kyllä todella tyytyväinen tähän projektiin, jonka sain tehtyä kahdeksan muun kurssin vieressä. En ole koskaan koodannut javascriptillä niin oli todella paljon opittavaa. Kehityskohteena voisi olla lisätä työhön bootstrap css:n tilalle tai käyttää reactia. Lisäksi syötteiden tarkistus voisi olla laajempaa.
+Olen kyllä todella tyytyväinen tähän projektiin, jonka sain tehtyä ja opittua. En ole koskaan koodannut javascriptillä niin oli todella paljon opittavaa. Kehityskohteena voisi olla lisätä työhön bootstrap css:n tilalle tai käyttää reactia. Lisäksi syötteiden tarkistus voisi olla laajempaa.
 
